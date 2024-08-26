@@ -1,1 +1,1 @@
-# web-template
+# sns-project-public

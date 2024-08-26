@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+}
+
+.sidnav {
+  /* width: 250px; サイドナビゲーションの幅を設定します */
+  /* background-color: #f4f4f4; /* 背景色を設定します（例） */
+  /* padding: 20px; 余白を設定します（オプション） */ */
+}
+
+.content {
+  flex: 1; /* 残りのスペースを全て取るように設定します */
+  padding: 20px; /* 余白を設定します（オプション） */
+}

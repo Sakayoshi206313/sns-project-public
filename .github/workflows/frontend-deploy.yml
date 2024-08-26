@@ -1,0 +1,60 @@
+name: Frontend Deploy
+
+run-name: Frontend Deploy (${{ github.event.inputs.env }}:${{ github.event.inputs.service }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'target environment'
+        required: true
+        type: choice
+        options:
+          - prd
+  workflow_call:
+    inputs:
+      env:
+        description: 'target environment'
+        type: string
+        required: true
+    secrets:
+      AWS_GITHUB_ACTIONS_ROLE_ARN_PRD:
+        required: true
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      INPUTS_ENV: ${{ github.event.inputs.env || inputs.env }}
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/initialize-pnpm
+
+      - if: ${{ env.INPUTS_ENV == 'prd' }}
+        uses: ./.github/actions/configure-aws-credentials
+        with:
+          role_to_assume: ${{ secrets.AWS_GITHUB_ACTIONS_ROLE_ARN_PRD }}
+
+      - name: Install pnpm dependencies
+        working-directory: "frontend"
+        run: pnpm install --prefer-offline
+        shell: bash
+
+      - name: build
+        working-directory: "frontend"
+        run: pnpm build
+
+      - name: Sync bundle files to S3
+        working-directory: "frontend"
+        run: |
+          aws s3 sync --exact-timestamps --delete ./out s3://${{ env.INPUTS_ENV }}-awesome-se-www-web
+
+      - name: CloudFront cache clear
+        if: ${{ env.INPUTS_ENV == 'prd' }}
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUD_FRONT_DISTRIBUTION_ID_PRD || secrets.AWS_CLOUD_FRONT_DISTRIBUTION_ID }} --paths "/*"

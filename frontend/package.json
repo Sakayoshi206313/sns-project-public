@@ -1,0 +1,50 @@
+{
+  "name": "@web-template/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "deps-update": "ncu --deep --color --interactive",
+    "dev": "next dev",
+    "format": "pnpm run format:prettier && pnpm run format:sort",
+    "format:prettier": "prettier --write '**/*.{js,jsx,ts,tsx,css,json}'",
+    "format:sort": "sort-package-json package.json",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "preview": "next start"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "3.5.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.16.0",
+    "@mui/material": "^5.15.21",
+    "@types/node": "20.13.0",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "axios": "^1.7.2",
+    "classnames": "2.5.1",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.2.3",
+    "install": "^0.13.0",
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-use": "17.5.0",
+    "ress": "5.0.2",
+    "styled-components": "6.1.11",
+    "typescript": "5.4.5"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "4.3.0",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "eslint-plugin-unused-imports": "4.0.0",
+    "prettier": "3.3.0",
+    "sort-package-json": "2.10.0"
+  },
+  "packageManager": "pnpm@9.1.4",
+  "engines": {
+    "node": "20.13.1",
+    "pnpm": "9.1.4"
+  }
+}

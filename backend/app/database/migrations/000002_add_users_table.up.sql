@@ -1,0 +1,2 @@
+-- INSERT INTO users (email, locale, gender, profile, birthday) VALUES
+-- ('yoshiki-sakai@awesomese.co.jp', 'Japan', 'men', '長野県出身', '1997-04-05');

@@ -1,0 +1,101 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+dist
+dist-dev
+dev-dist
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+package-lock.json
+.wireit
+.eslintcache
+front/src/types/openapi
+
+.idea
+*.iml
+.pnpm-debug.log
+
+# golang
+**/mock/*.go
+**/openapi.go
+
+.terraform
+
+# openapi
+openapi/openapi.dist.yaml
+openapi/config.yaml
+
+storybook-static
+*.log
+
+# etc
+*.swp
+tmp
+stats.html
+.turbo
+.task
+.idea/*

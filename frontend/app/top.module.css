@@ -1,0 +1,135 @@
+.main_background {
+  background-color: #fff; /*背景色の指定*/
+  border-radius: 8px; /*ボックスの角を丸くする*/
+  padding: 32px 56px; /*余白(内側)*/
+}
+
+.usr_account_icon_img {
+  display: flex; /*初期値が横　縦も可能(超重要)*/
+}
+
+.usr_account_name {
+  margin-left: 8px; /*左の余白*/
+}
+
+.main_title {
+  font-size: 28px; /*文字のサイズ*/
+  font-weight: 600; /*文字の太さ*/
+  margin-top: 8px; /*上の余白*/
+}
+
+.title_tag {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+
+.title_tag_keywold {
+  background-color: #edeeee;
+  border-radius: 4px;
+  color: rgb(0 0 0 / 60%); /*文字の色*/
+  font-size: 14px;
+  padding: 0 6px;
+}
+
+.keywold_link {
+  padding: 0 6px; /*パデングとマージは超重要！特にリンク遷移するボタンとか！*/
+}
+.day {
+  display: flex;
+  font-size: 14px;
+  gap: 0 8px;
+  margin-top: 8px;
+  margin-bottom: 48px; /*下の余白*/
+}
+
+.day_coler {
+  color: rgb(0 0 0 / 60%);
+}
+
+.sub_title {
+  border-bottom: 1px solid rgb(0 0 0 / 12%); /*下線指定*/
+  font-size: 1.53em;
+  line-height: 1.4; /*行間設定*/
+  margin-top: 8px;
+  padding-bottom: 4px; /*余白(内側)の下*/
+  font-weight: bold;
+}
+
+.sub_margin {
+  margin: 16px 0; /*余白(外側)　*/
+}
+
+.sub_coment {
+  display: flex;
+  margin: 16px 0;
+}
+
+.detail_title {
+  font-size: 1.29em;
+  line-height: 1.6;
+  margin: 40px 0 16px;
+  font-weight: bold;
+}
+
+.detail_points {
+  padding-left: 1.5em;
+  margin: 16px 0;
+  list-style-type: disc;
+}
+
+.detail_coment {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.detail_code {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  font-size: 0.88em;
+  padding: 1px 4px;
+}
+
+.detail_coment_html {
+  margin: 16px 0;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.detail_coment_css {
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.detail_source_code {
+  margin: 24px -16px;
+  padding: 8px 16px;
+  background-color: #1d2020;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.82em;
+}
+
+.code_color_red {
+  color: #ff8095;
+}
+
+.code_color_green {
+  color: #8bdf4c;
+}
+
+.code_color_blue {
+  color: #3bbfbf;
+}
+
+.code_color_gray {
+  color: #979797;
+}
+
+.code_color_purple {
+  color: #a980f5;
+}
+
+.url_color {
+  color: #357a00;
+}

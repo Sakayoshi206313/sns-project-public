@@ -1,0 +1,77 @@
+name: Backend Deploy
+
+run-name: Backend Deploy (${{ github.event.inputs.env }}:${{ github.event.inputs.service }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'target environment'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prd
+      service:
+        description: 'api or admin or consumer'
+        required: true
+        type: choice
+        options:
+          - api
+          - fluent-bit
+  workflow_call:
+    inputs:
+      env:
+        description: 'target environment'
+        type: string
+        required: true
+    secrets:
+      AWS_GITHUB_ACTIONS_ROLE_ARN_DEV:
+        required: true
+      AWS_GITHUB_ACTIONS_ROLE_ARN_PRD:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      INPUTS_ENV: ${{ github.event.inputs.env || inputs.env }}
+      INPUTS_SERVICE: ${{ github.event.inputs.service || inputs.service }}
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version-file: .go-version
+          cache: true
+          cache-dependency-path: backend/go.mod
+
+      - if: ${{ env.INPUTS_ENV == 'prd' }}
+        uses: ./.github/actions/configure-aws-credentials
+        with:
+          role_to_assume: ${{ secrets.AWS_GITHUB_ACTIONS_ROLE_ARN_PRD }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Application Docker Build
+        working-directory: "backend"
+        run: |
+          sh ./aws_deploy.sh build ${{ github.event.inputs.env }} ${{ github.event.inputs.service }}
+
+      - name: Application Docker push
+        working-directory: "backend"
+        run: |
+          sh ./aws_deploy.sh push ${{ github.event.inputs.env }} ${{ github.event.inputs.service }}
+
+      - name: Logout of Amazon ECR
+        if: always()
+        run: docker logout ${{ steps.login-ecr.outputs.registry }}
